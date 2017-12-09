@@ -77,8 +77,8 @@ display:none;
 
                     <ItemTemplate>
                         <li>
-                            <img width="180" height="108" src="/Photos/Posts/<%# Eval("hinhDD") %>" alt="<%# Eval("hinhDD") %>" />
-                            <h3><%# Eval("tenBV") %></h3>
+                            <a href="<%# GetRouteUrl("PostContentRoute",new { bidanh = Eval("biDanh") }) %>"><img width="180" height="108" src="/Photos/Posts/<%# Eval("hinhDD") %>" alt="<%# Eval("hinhDD") %>" /></a>
+                            <a  style="color:#000;text-decoration:none" href="<%# GetRouteUrl("PostContentRoute",new { bidanh = Eval("biDanh") }) %>"><h3><%# Eval("tenBV") %></h3></a>
                             <p><%# Eval("ndTomTat") %></p>
                         </li>
                     </ItemTemplate>

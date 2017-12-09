@@ -14,16 +14,22 @@ namespace ShopAround
         {
    
         }
-        public IQueryable<SanPham> GetSearchResult([RouteData] string keyword, [RouteData] int? princefrom, [RouteData]  int? princeto)
+        public IQueryable<SanPham> GetSearchResult([QueryString] string keyword, [QueryString] int? princefrom, [QueryString]  int? princeto)
         {
             ShopAroundEntities db = new ShopAroundEntities();
-            var result = db.SanPhams.Include("NhomSanPham").Where(m => m.TenSanPham.ToLower().Contains(keyword.ToLower()));
-            if (princefrom.HasValue && princeto.HasValue && princefrom.Value != 0)
+            if (string.IsNullOrEmpty(keyword) == false)
             {
-                result = result.Where(m => m.DonGia >= princefrom && m.DonGia <= princeto);
+                var result = db.SanPhams.Include("NhomSanPham").Where(m => m.TenSanPham.ToLower().Contains(keyword.ToLower()));
+                countresult.InnerText = result.Count().ToString();
+                return result.OrderBy(m => m.TenSanPham);
             }
-            countresult.InnerText = result.Count().ToString();
-            return result.OrderBy(m=>m.TenSanPham) ;
+            else
+            {
+                var result = db.SanPhams.Include("NhomSanPham").Where(m => m.DonGia >= princefrom.Value && m.DonGia <= princeto.Value);
+                countresult.InnerText = result.Count().ToString();
+                return result.OrderBy(m => m.TenSanPham);
+            }
+           
         }
     }
 }

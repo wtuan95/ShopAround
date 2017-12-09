@@ -1,4 +1,5 @@
-﻿<%@ Page  Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProductDetail.aspx.cs" Inherits="ShopAround.ProductDetail" %>
+﻿
+<%@ Page  Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProductDetail.aspx.cs" Inherits="ShopAround.ProductDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="StylesContent" runat="server">
     <style>
@@ -18,6 +19,7 @@
             .popupSocial {
                 display: none;
             }
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

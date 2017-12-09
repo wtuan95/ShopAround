@@ -64,20 +64,34 @@
             </div>
         </div>
 
-        <div class="article-other">
-            <h3 class="title"><span></span></h3>
-            <ul>
-            </ul>
-        </div>
+
         <div class="clb"></div>
     </div>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="StylesContent">
     <style>
+         .popupSocial {
+            z-index: 999;
+            text-align: center;
+            background: #2c4584;
+            position: fixed;
+            top: 45%;
+            left: 10px;
+            padding: 20px 10px;
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+
+        @media screen and (max-width:768px) {
+            .popupSocial {
+                display: none;
+            }
+        }
         article {
             font-size: 14px;
             padding: 0px 20px;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
+
         }
 
             article h3, article p {
@@ -93,7 +107,9 @@
             }
 
             article img {
-                margin: 0 auto;
+                margin: 10px auto;
+                width:100%;
+                height:auto;
             }
 
     </style>

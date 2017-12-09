@@ -16,19 +16,11 @@ namespace ShopAround.UControls
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            int index = Keyword.Text.LastIndexOf('.');
 
-            string keyword = Keyword.Text.Trim();
-            if(index >= 0)
-            {
-                keyword = keyword.Remove(index, 1);
-            }
-            if(PrinceFrom.Text != string.Empty && PrinceTo.Text != string.Empty)
-            Response.Redirect(GetRouteUrl("SearchResultRoute", new { keyword = keyword, princefrom = int.Parse(PrinceFrom.Text), princeto = int.Parse(PrinceTo.Text) }));
-            else
-            {
-                Response.Redirect(GetRouteUrl("SearchResultRoute", new { keyword = keyword, princefrom = 0, princeto = 0 }));
-            }
+            string keyword = Keyword.Text;
+            Response.Redirect(GetRouteUrl("SearchResultRoute", new { keyword = keyword}));
         }
+
+     
     }
 }

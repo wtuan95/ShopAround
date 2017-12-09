@@ -17,7 +17,7 @@ namespace ShopAround
             SanPham sp = db.SanPhams.Find(id);
             if(sp == null)
             {
-                Response.Redirect("~/PageNotFound.aspx");
+                Response.RedirectToRoute("PageNotFound");
             }
             else
             {

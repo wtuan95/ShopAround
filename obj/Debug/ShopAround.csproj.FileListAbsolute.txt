@@ -47,3 +47,28 @@ H:\ASP.NET WebForms\ShopAround\ShopAround\obj\Debug\ShopAround.dll
 H:\ASP.NET WebForms\ShopAround\ShopAround\obj\Debug\ShopAround.pdb
 H:\ASP.NET WebForms\ShopAround\ShopAround\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
 H:\ASP.NET WebForms\ShopAround\ShopAround\bin\AspNet.ScriptManager.jQuery.dll
+H:\GitHub\ShopAround\ShopAround\bin\ShopAround.dll.config
+H:\GitHub\ShopAround\ShopAround\bin\ShopAround.dll
+H:\GitHub\ShopAround\ShopAround\bin\ShopAround.pdb
+H:\GitHub\ShopAround\ShopAround\bin\Antlr3.Runtime.dll
+H:\GitHub\ShopAround\ShopAround\bin\AspNet.ScriptManager.jQuery.dll
+H:\GitHub\ShopAround\ShopAround\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+H:\GitHub\ShopAround\ShopAround\bin\EntityFramework.dll
+H:\GitHub\ShopAround\ShopAround\bin\EntityFramework.SqlServer.dll
+H:\GitHub\ShopAround\ShopAround\bin\Microsoft.AspNet.FriendlyUrls.dll
+H:\GitHub\ShopAround\ShopAround\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+H:\GitHub\ShopAround\ShopAround\bin\Microsoft.ScriptManager.MSAjax.dll
+H:\GitHub\ShopAround\ShopAround\bin\Microsoft.ScriptManager.WebForms.dll
+H:\GitHub\ShopAround\ShopAround\bin\Microsoft.Web.Infrastructure.dll
+H:\GitHub\ShopAround\ShopAround\bin\Newtonsoft.Json.dll
+H:\GitHub\ShopAround\ShopAround\bin\System.Web.Optimization.dll
+H:\GitHub\ShopAround\ShopAround\bin\WebGrease.dll
+H:\GitHub\ShopAround\ShopAround\bin\EntityFramework.xml
+H:\GitHub\ShopAround\ShopAround\bin\EntityFramework.SqlServer.xml
+H:\GitHub\ShopAround\ShopAround\bin\Newtonsoft.Json.xml
+H:\GitHub\ShopAround\ShopAround\bin\System.Web.Optimization.xml
+H:\GitHub\ShopAround\ShopAround\bin\Antlr3.Runtime.pdb
+H:\GitHub\ShopAround\ShopAround\bin\Microsoft.AspNet.FriendlyUrls.xml
+H:\GitHub\ShopAround\ShopAround\obj\Debug\ShopAround.csprojResolveAssemblyReference.cache
+H:\GitHub\ShopAround\ShopAround\obj\Debug\ShopAround.dll
+H:\GitHub\ShopAround\ShopAround\obj\Debug\ShopAround.pdb

@@ -8,11 +8,12 @@ z-index:999; text-align:center;
 background:#2c4584; position:fixed; 
 top:45%; left:10px; padding:20px 10px; 
 border:1px solid #333; border-radius:10px;
-  } 
-@media screen and (max-width:768px){
- .popupSocial{
-display:none;
-}
+  }
+        @media screen and (max-width:768px) {
+            .popupSocial {
+                display: none;
+            }
+        }
     </style>
 </asp:Content>
 

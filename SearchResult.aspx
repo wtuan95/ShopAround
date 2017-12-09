@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchResult.aspx.cs" Inherits="ShopAround.SearchResult" %>
+﻿
+<%@ Page Title="Kết quả tìm kiếm" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchResult.aspx.cs" Inherits="ShopAround.SearchResult" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="StylesContent" runat="server">
     <link href="/Content/pager.css" rel="stylesheet" />
 </asp:Content>
@@ -8,10 +9,7 @@
     </div>
     <div class="search-result">
         
-        <h1 style="line-height:normal">Tìm thấy <span runat="server" id="countresult"></span> sản phẩm theo từ khóa "<%= RouteData.Values["keyword"] %>"
-           <% if(RouteData.Values["princefrom"] != null && RouteData.Values["princeto"] != null && int.Parse(RouteData.Values["princefrom"].ToString()) != 0){ %> 
-            với giá từ <%= string.Format("{0:#,##0}",int.Parse(RouteData.Values["princefrom"].ToString())) %> đ đến <%= string.Format("{0:#,##0}",int.Parse(RouteData.Values["princeto"].ToString())) %> đ
-          <% } %>
+        <h1 style="line-height:normal">Tìm thấy <span runat="server" id="countresult"></span> sản phẩm 
         </h1>
       
         
