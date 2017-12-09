@@ -1,0 +1,656 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShopAroundModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ChiTietDatHang">
+          <Key>
+            <PropertyRef Name="DatHangID" />
+            <PropertyRef Name="MaSanPham" />
+          </Key>
+          <Property Name="DatHangID" Type="int" Nullable="false" />
+          <Property Name="MaSanPham" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="DonGia" Type="int" Nullable="false" />
+          <Property Name="ThanhTien" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DatHang">
+          <Key>
+            <PropertyRef Name="DatHangID" />
+          </Key>
+          <Property Name="DatHangID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoDem" Type="nvarchar" MaxLength="100" />
+          <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="SDT" Type="varchar" MaxLength="15" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="GioiTinh" Type="bit" Nullable="false" />
+          <Property Name="TongSoLuong" Type="tinyint" Nullable="false" />
+          <Property Name="TongThanhTien" Type="int" Nullable="false" />
+          <Property Name="NgayDatHang" Type="date" Nullable="false" />
+          <Property Name="TrangThai" Type="bit" Nullable="false" />
+          <Property Name="xacNhanBoi" Type="varchar" MaxLength="68" />
+        </EntityType>
+        <EntityType Name="HopThu">
+          <Key>
+            <PropertyRef Name="HopThuID" />
+          </Key>
+          <Property Name="HopThuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="Email" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="NoiDung" Type="ntext" Nullable="false" />
+          <Property Name="NgayGui" Type="date" Nullable="false" />
+          <Property Name="DaXacNhan" Type="bit" Nullable="false" />
+          <Property Name="tkThanhVien" Type="varchar" MaxLength="68" />
+        </EntityType>
+        <EntityType Name="NhomSanPham">
+          <Key>
+            <PropertyRef Name="NhomSanPhamID" />
+          </Key>
+          <Property Name="NhomSanPhamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNhom" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhanLoaiID" Type="int" Nullable="false" />
+          <Property Name="BiDanh" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PhanLoai">
+          <Key>
+            <PropertyRef Name="PhanLoaiID" />
+          </Key>
+          <Property Name="PhanLoaiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenPhanLoai" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BiDanh" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QuanTri">
+          <Key>
+            <PropertyRef Name="tkThanhVien" />
+          </Key>
+          <Property Name="tkThanhVien" Type="varchar" MaxLength="68" Nullable="false" />
+          <Property Name="matKhau" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ngayCap" Type="datetime" Nullable="false" />
+          <Property Name="hoTen" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="hinhAnh" Type="varchar" MaxLength="75" />
+          <Property Name="gioiTinh" Type="bit" Nullable="false" />
+          <Property Name="soDT" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="256" />
+          <Property Name="diaChi" Type="nvarchar" MaxLength="500" />
+          <Property Name="duocSD" Type="bit" Nullable="false" />
+          <Property Name="ghiChu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="MaSanPham" />
+          </Key>
+          <Property Name="MaSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NhomSanPhamID" Type="int" Nullable="false" />
+          <Property Name="TenSanPham" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DonGia" Type="int" Nullable="false" />
+          <Property Name="Hinh" Type="char" MaxLength="20" />
+          <Property Name="BiDanh" Type="varchar" MaxLength="100" />
+          <Property Name="ndTomTat" Type="nvarchar(max)" />
+          <Property Name="ndDayDu" Type="nvarchar(max)" />
+          <Property Name="NgayCapNhat" Type="datetime" Nullable="false" />
+          <Property Name="tkThanhVien" Type="varchar" MaxLength="68" />
+        </EntityType>
+        <EntityType Name="TinTuc">
+          <Key>
+            <PropertyRef Name="maBV" />
+          </Key>
+          <Property Name="maBV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenBV" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ngayDang" Type="datetime" Nullable="false" />
+          <Property Name="tkThanhVien" Type="varchar" MaxLength="68" Nullable="false" />
+          <Property Name="ndTomTat" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="noiDungBV" Type="nvarchar(max)" />
+          <Property Name="soLanDoc" Type="int" Nullable="false" />
+          <Property Name="biDanh" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="hinhDD" Type="varchar" MaxLength="270" />
+          <Property Name="daDuyet" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ChiTietDatHang_DatHang">
+          <End Role="DatHang" Type="Self.DatHang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ChiTietDatHang" Type="Self.ChiTietDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatHang">
+              <PropertyRef Name="DatHangID" />
+            </Principal>
+            <Dependent Role="ChiTietDatHang">
+              <PropertyRef Name="DatHangID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDatHang_SanPham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="ChiTietDatHang" Type="Self.ChiTietDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="ChiTietDatHang">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DatHang_QuanTri">
+          <End Role="QuanTri" Type="Self.QuanTri" Multiplicity="0..1" />
+          <End Role="DatHang" Type="Self.DatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuanTri">
+              <PropertyRef Name="tkThanhVien" />
+            </Principal>
+            <Dependent Role="DatHang">
+              <PropertyRef Name="xacNhanBoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HopThu_QuanTri">
+          <End Role="QuanTri" Type="Self.QuanTri" Multiplicity="0..1" />
+          <End Role="HopThu" Type="Self.HopThu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuanTri">
+              <PropertyRef Name="tkThanhVien" />
+            </Principal>
+            <Dependent Role="HopThu">
+              <PropertyRef Name="tkThanhVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhomSanPham_PhanLoai">
+          <End Role="PhanLoai" Type="Self.PhanLoai" Multiplicity="1" />
+          <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoai">
+              <PropertyRef Name="PhanLoaiID" />
+            </Principal>
+            <Dependent Role="NhomSanPham">
+              <PropertyRef Name="PhanLoaiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_NhomSanPham">
+          <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhomSanPham">
+              <PropertyRef Name="NhomSanPhamID" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="NhomSanPhamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_QuanTri">
+          <End Role="QuanTri" Type="Self.QuanTri" Multiplicity="0..1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuanTri">
+              <PropertyRef Name="tkThanhVien" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="tkThanhVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TinTuc_QuanTri">
+          <End Role="QuanTri" Type="Self.QuanTri" Multiplicity="1" />
+          <End Role="TinTuc" Type="Self.TinTuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuanTri">
+              <PropertyRef Name="tkThanhVien" />
+            </Principal>
+            <Dependent Role="TinTuc">
+              <PropertyRef Name="tkThanhVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopAroundModelStoreContainer">
+          <EntitySet Name="ChiTietDatHang" EntityType="Self.ChiTietDatHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatHang" EntityType="Self.DatHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HopThu" EntityType="Self.HopThu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhomSanPham" EntityType="Self.NhomSanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhanLoai" EntityType="Self.PhanLoai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuanTri" EntityType="Self.QuanTri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChiTietDatHang_DatHang" Association="Self.FK_ChiTietDatHang_DatHang">
+            <End Role="DatHang" EntitySet="DatHang" />
+            <End Role="ChiTietDatHang" EntitySet="ChiTietDatHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDatHang_SanPham" Association="Self.FK_ChiTietDatHang_SanPham">
+            <End Role="SanPham" EntitySet="SanPham" />
+            <End Role="ChiTietDatHang" EntitySet="ChiTietDatHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DatHang_QuanTri" Association="Self.FK_DatHang_QuanTri">
+            <End Role="QuanTri" EntitySet="QuanTri" />
+            <End Role="DatHang" EntitySet="DatHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HopThu_QuanTri" Association="Self.FK_HopThu_QuanTri">
+            <End Role="QuanTri" EntitySet="QuanTri" />
+            <End Role="HopThu" EntitySet="HopThu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhomSanPham_PhanLoai" Association="Self.FK_NhomSanPham_PhanLoai">
+            <End Role="PhanLoai" EntitySet="PhanLoai" />
+            <End Role="NhomSanPham" EntitySet="NhomSanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_NhomSanPham" Association="Self.FK_SanPham_NhomSanPham">
+            <End Role="NhomSanPham" EntitySet="NhomSanPham" />
+            <End Role="SanPham" EntitySet="SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_QuanTri" Association="Self.FK_SanPham_QuanTri">
+            <End Role="QuanTri" EntitySet="QuanTri" />
+            <End Role="SanPham" EntitySet="SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TinTuc_QuanTri" Association="Self.FK_TinTuc_QuanTri">
+            <End Role="QuanTri" EntitySet="QuanTri" />
+            <End Role="TinTuc" EntitySet="TinTuc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopAroundModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ChiTietDatHang">
+          <Key>
+            <PropertyRef Name="DatHangID" />
+            <PropertyRef Name="MaSanPham" />
+          </Key>
+          <Property Name="DatHangID" Type="Int32" Nullable="false" />
+          <Property Name="MaSanPham" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="DonGia" Type="Int32" Nullable="false" />
+          <Property Name="ThanhTien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DatHang" Relationship="ShopAroundModel.FK_ChiTietDatHang_DatHang" FromRole="ChiTietDatHang" ToRole="DatHang" />
+          <NavigationProperty Name="SanPham" Relationship="ShopAroundModel.FK_ChiTietDatHang_SanPham" FromRole="ChiTietDatHang" ToRole="SanPham" />
+        </EntityType>
+        <EntityType Name="NhomSanPham">
+          <Key>
+            <PropertyRef Name="NhomSanPhamID" />
+          </Key>
+          <Property Name="NhomSanPhamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNhom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhanLoaiID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PhanLoai" Relationship="Self.FK_NhomSanPham_PhanLoai" FromRole="NhomSanPham" ToRole="PhanLoai" />
+          <Property Name="BiDanh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SanPhams" Relationship="ShopAroundModel.FK_SanPham_NhomSanPham" FromRole="NhomSanPham" ToRole="SanPham" />
+        </EntityType>
+        <EntityType Name="PhanLoai">
+          <Key>
+            <PropertyRef Name="PhanLoaiID" />
+          </Key>
+          <Property Name="PhanLoaiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenPhanLoai" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NhomSanPhams" Relationship="Self.FK_NhomSanPham_PhanLoai" FromRole="PhanLoai" ToRole="NhomSanPham" />
+          <Property Name="BiDanh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_NhomSanPham_PhanLoai">
+          <End Role="PhanLoai" Type="Self.PhanLoai" Multiplicity="1" />
+          <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoai">
+              <PropertyRef Name="PhanLoaiID" />
+            </Principal>
+            <Dependent Role="NhomSanPham">
+              <PropertyRef Name="PhanLoaiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopAroundEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="ChiTietDatHangs" EntityType="Self.ChiTietDatHang" />
+          <EntitySet Name="NhomSanPhams" EntityType="Self.NhomSanPham" />
+          <EntitySet Name="PhanLoais" EntityType="Self.PhanLoai" />
+          <AssociationSet Name="FK_NhomSanPham_PhanLoai" Association="Self.FK_NhomSanPham_PhanLoai">
+            <End Role="PhanLoai" EntitySet="PhanLoais" />
+            <End Role="NhomSanPham" EntitySet="NhomSanPhams" />
+          </AssociationSet>
+          <EntitySet Name="DatHangs" EntityType="ShopAroundModel.DatHang" />
+          <EntitySet Name="HopThus" EntityType="ShopAroundModel.HopThu" />
+          <EntitySet Name="QuanTris" EntityType="ShopAroundModel.QuanTri" />
+          <EntitySet Name="SanPhams" EntityType="ShopAroundModel.SanPham" />
+          <EntitySet Name="TinTucs" EntityType="ShopAroundModel.TinTuc" />
+          <AssociationSet Name="FK_ChiTietDatHang_DatHang" Association="ShopAroundModel.FK_ChiTietDatHang_DatHang">
+            <End Role="DatHang" EntitySet="DatHangs" />
+            <End Role="ChiTietDatHang" EntitySet="ChiTietDatHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDatHang_SanPham" Association="ShopAroundModel.FK_ChiTietDatHang_SanPham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="ChiTietDatHang" EntitySet="ChiTietDatHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DatHang_QuanTri" Association="ShopAroundModel.FK_DatHang_QuanTri">
+            <End Role="QuanTri" EntitySet="QuanTris" />
+            <End Role="DatHang" EntitySet="DatHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HopThu_QuanTri" Association="ShopAroundModel.FK_HopThu_QuanTri">
+            <End Role="QuanTri" EntitySet="QuanTris" />
+            <End Role="HopThu" EntitySet="HopThus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_NhomSanPham" Association="ShopAroundModel.FK_SanPham_NhomSanPham">
+            <End Role="NhomSanPham" EntitySet="NhomSanPhams" />
+            <End Role="SanPham" EntitySet="SanPhams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_QuanTri" Association="ShopAroundModel.FK_SanPham_QuanTri">
+            <End Role="QuanTri" EntitySet="QuanTris" />
+            <End Role="SanPham" EntitySet="SanPhams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TinTuc_QuanTri" Association="ShopAroundModel.FK_TinTuc_QuanTri">
+            <End Role="QuanTri" EntitySet="QuanTris" />
+            <End Role="TinTuc" EntitySet="TinTucs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DatHang">
+          <Key>
+            <PropertyRef Name="DatHangID" />
+          </Key>
+          <Property Name="DatHangID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoDem" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ten" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="Boolean" Nullable="false" />
+          <Property Name="TongSoLuong" Type="Byte" Nullable="false" />
+          <Property Name="TongThanhTien" Type="Int32" Nullable="false" />
+          <Property Name="NgayDatHang" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TrangThai" Type="Boolean" Nullable="false" />
+          <Property Name="xacNhanBoi" Type="String" MaxLength="68" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ChiTietDatHangs" Relationship="ShopAroundModel.FK_ChiTietDatHang_DatHang" FromRole="DatHang" ToRole="ChiTietDatHang" />
+          <NavigationProperty Name="QuanTri" Relationship="ShopAroundModel.FK_DatHang_QuanTri" FromRole="DatHang" ToRole="QuanTri" />
+        </EntityType>
+        <EntityType Name="HopThu">
+          <Key>
+            <PropertyRef Name="HopThuID" />
+          </Key>
+          <Property Name="HopThuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayGui" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DaXacNhan" Type="Boolean" Nullable="false" />
+          <Property Name="tkThanhVien" Type="String" MaxLength="68" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="QuanTri" Relationship="ShopAroundModel.FK_HopThu_QuanTri" FromRole="HopThu" ToRole="QuanTri" />
+        </EntityType>
+        <EntityType Name="QuanTri">
+          <Key>
+            <PropertyRef Name="tkThanhVien" />
+          </Key>
+          <Property Name="tkThanhVien" Type="String" Nullable="false" MaxLength="68" FixedLength="false" Unicode="false" />
+          <Property Name="matKhau" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ngayCap" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="hoTen" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="hinhAnh" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="gioiTinh" Type="Boolean" Nullable="false" />
+          <Property Name="soDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="diaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="duocSD" Type="Boolean" Nullable="false" />
+          <Property Name="ghiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DatHangs" Relationship="ShopAroundModel.FK_DatHang_QuanTri" FromRole="QuanTri" ToRole="DatHang" />
+          <NavigationProperty Name="HopThus" Relationship="ShopAroundModel.FK_HopThu_QuanTri" FromRole="QuanTri" ToRole="HopThu" />
+          <NavigationProperty Name="SanPhams" Relationship="ShopAroundModel.FK_SanPham_QuanTri" FromRole="QuanTri" ToRole="SanPham" />
+          <NavigationProperty Name="TinTucs" Relationship="ShopAroundModel.FK_TinTuc_QuanTri" FromRole="QuanTri" ToRole="TinTuc" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="MaSanPham" />
+          </Key>
+          <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NhomSanPhamID" Type="Int32" Nullable="false" />
+          <Property Name="TenSanPham" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DonGia" Type="Int32" Nullable="false" />
+          <Property Name="Hinh" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="BiDanh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ndTomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ndDayDu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tkThanhVien" Type="String" MaxLength="68" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ChiTietDatHangs" Relationship="ShopAroundModel.FK_ChiTietDatHang_SanPham" FromRole="SanPham" ToRole="ChiTietDatHang" />
+          <NavigationProperty Name="NhomSanPham" Relationship="ShopAroundModel.FK_SanPham_NhomSanPham" FromRole="SanPham" ToRole="NhomSanPham" />
+          <NavigationProperty Name="QuanTri" Relationship="ShopAroundModel.FK_SanPham_QuanTri" FromRole="SanPham" ToRole="QuanTri" />
+        </EntityType>
+        <EntityType Name="TinTuc">
+          <Key>
+            <PropertyRef Name="maBV" />
+          </Key>
+          <Property Name="maBV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenBV" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ngayDang" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tkThanhVien" Type="String" Nullable="false" MaxLength="68" FixedLength="false" Unicode="false" />
+          <Property Name="ndTomTat" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="noiDungBV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="soLanDoc" Type="Int32" Nullable="false" />
+          <Property Name="biDanh" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="hinhDD" Type="String" MaxLength="270" FixedLength="false" Unicode="false" />
+          <Property Name="daDuyet" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="QuanTri" Relationship="ShopAroundModel.FK_TinTuc_QuanTri" FromRole="TinTuc" ToRole="QuanTri" />
+        </EntityType>
+        <Association Name="FK_ChiTietDatHang_DatHang">
+          <End Type="ShopAroundModel.DatHang" Role="DatHang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopAroundModel.ChiTietDatHang" Role="ChiTietDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatHang">
+              <PropertyRef Name="DatHangID" />
+            </Principal>
+            <Dependent Role="ChiTietDatHang">
+              <PropertyRef Name="DatHangID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDatHang_SanPham">
+          <End Type="ShopAroundModel.SanPham" Role="SanPham" Multiplicity="1" />
+          <End Type="ShopAroundModel.ChiTietDatHang" Role="ChiTietDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="ChiTietDatHang">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DatHang_QuanTri">
+          <End Type="ShopAroundModel.QuanTri" Role="QuanTri" Multiplicity="0..1" />
+          <End Type="ShopAroundModel.DatHang" Role="DatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuanTri">
+              <PropertyRef Name="tkThanhVien" />
+            </Principal>
+            <Dependent Role="DatHang">
+              <PropertyRef Name="xacNhanBoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HopThu_QuanTri">
+          <End Type="ShopAroundModel.QuanTri" Role="QuanTri" Multiplicity="0..1" />
+          <End Type="ShopAroundModel.HopThu" Role="HopThu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuanTri">
+              <PropertyRef Name="tkThanhVien" />
+            </Principal>
+            <Dependent Role="HopThu">
+              <PropertyRef Name="tkThanhVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_NhomSanPham">
+          <End Type="ShopAroundModel.NhomSanPham" Role="NhomSanPham" Multiplicity="1" />
+          <End Type="ShopAroundModel.SanPham" Role="SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhomSanPham">
+              <PropertyRef Name="NhomSanPhamID" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="NhomSanPhamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_QuanTri">
+          <End Type="ShopAroundModel.QuanTri" Role="QuanTri" Multiplicity="0..1" />
+          <End Type="ShopAroundModel.SanPham" Role="SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuanTri">
+              <PropertyRef Name="tkThanhVien" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="tkThanhVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TinTuc_QuanTri">
+          <End Type="ShopAroundModel.QuanTri" Role="QuanTri" Multiplicity="1" />
+          <End Type="ShopAroundModel.TinTuc" Role="TinTuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuanTri">
+              <PropertyRef Name="tkThanhVien" />
+            </Principal>
+            <Dependent Role="TinTuc">
+              <PropertyRef Name="tkThanhVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShopAroundModelStoreContainer" CdmEntityContainer="ShopAroundEntities">
+          <EntitySetMapping Name="ChiTietDatHangs">
+            <EntityTypeMapping TypeName="ShopAroundModel.ChiTietDatHang">
+              <MappingFragment StoreEntitySet="ChiTietDatHang">
+                <ScalarProperty Name="DatHangID" ColumnName="DatHangID" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhomSanPhams">
+            <EntityTypeMapping TypeName="ShopAroundModel.NhomSanPham">
+              <MappingFragment StoreEntitySet="NhomSanPham">
+                <ScalarProperty Name="BiDanh" ColumnName="BiDanh" />
+                <ScalarProperty Name="NhomSanPhamID" ColumnName="NhomSanPhamID" />
+                <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
+                <ScalarProperty Name="PhanLoaiID" ColumnName="PhanLoaiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhanLoais">
+            <EntityTypeMapping TypeName="ShopAroundModel.PhanLoai">
+              <MappingFragment StoreEntitySet="PhanLoai">
+                <ScalarProperty Name="BiDanh" ColumnName="BiDanh" />
+                <ScalarProperty Name="PhanLoaiID" ColumnName="PhanLoaiID" />
+                <ScalarProperty Name="TenPhanLoai" ColumnName="TenPhanLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatHangs">
+            <EntityTypeMapping TypeName="ShopAroundModel.DatHang">
+              <MappingFragment StoreEntitySet="DatHang">
+                <ScalarProperty Name="xacNhanBoi" ColumnName="xacNhanBoi" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
+                <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />
+                <ScalarProperty Name="TongSoLuong" ColumnName="TongSoLuong" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="HoDem" ColumnName="HoDem" />
+                <ScalarProperty Name="DatHangID" ColumnName="DatHangID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HopThus">
+            <EntityTypeMapping TypeName="ShopAroundModel.HopThu">
+              <MappingFragment StoreEntitySet="HopThu">
+                <ScalarProperty Name="tkThanhVien" ColumnName="tkThanhVien" />
+                <ScalarProperty Name="DaXacNhan" ColumnName="DaXacNhan" />
+                <ScalarProperty Name="NgayGui" ColumnName="NgayGui" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="HopThuID" ColumnName="HopThuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuanTris">
+            <EntityTypeMapping TypeName="ShopAroundModel.QuanTri">
+              <MappingFragment StoreEntitySet="QuanTri">
+                <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+                <ScalarProperty Name="duocSD" ColumnName="duocSD" />
+                <ScalarProperty Name="diaChi" ColumnName="diaChi" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="soDT" ColumnName="soDT" />
+                <ScalarProperty Name="gioiTinh" ColumnName="gioiTinh" />
+                <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
+                <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+                <ScalarProperty Name="ngayCap" ColumnName="ngayCap" />
+                <ScalarProperty Name="matKhau" ColumnName="matKhau" />
+                <ScalarProperty Name="tkThanhVien" ColumnName="tkThanhVien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SanPhams">
+            <EntityTypeMapping TypeName="ShopAroundModel.SanPham">
+              <MappingFragment StoreEntitySet="SanPham">
+                <ScalarProperty Name="tkThanhVien" ColumnName="tkThanhVien" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="ndDayDu" ColumnName="ndDayDu" />
+                <ScalarProperty Name="ndTomTat" ColumnName="ndTomTat" />
+                <ScalarProperty Name="BiDanh" ColumnName="BiDanh" />
+                <ScalarProperty Name="Hinh" ColumnName="Hinh" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="NhomSanPhamID" ColumnName="NhomSanPhamID" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TinTucs">
+            <EntityTypeMapping TypeName="ShopAroundModel.TinTuc">
+              <MappingFragment StoreEntitySet="TinTuc">
+                <ScalarProperty Name="daDuyet" ColumnName="daDuyet" />
+                <ScalarProperty Name="hinhDD" ColumnName="hinhDD" />
+                <ScalarProperty Name="biDanh" ColumnName="biDanh" />
+                <ScalarProperty Name="soLanDoc" ColumnName="soLanDoc" />
+                <ScalarProperty Name="noiDungBV" ColumnName="noiDungBV" />
+                <ScalarProperty Name="ndTomTat" ColumnName="ndTomTat" />
+                <ScalarProperty Name="tkThanhVien" ColumnName="tkThanhVien" />
+                <ScalarProperty Name="ngayDang" ColumnName="ngayDang" />
+                <ScalarProperty Name="tenBV" ColumnName="tenBV" />
+                <ScalarProperty Name="maBV" ColumnName="maBV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

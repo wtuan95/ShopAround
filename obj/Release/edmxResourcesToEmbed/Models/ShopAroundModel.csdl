@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopAroundModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ChiTietDatHang">
+    <Key>
+      <PropertyRef Name="DatHangID" />
+      <PropertyRef Name="MaSanPham" />
+    </Key>
+    <Property Name="DatHangID" Type="Int32" Nullable="false" />
+    <Property Name="MaSanPham" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" Nullable="false" />
+    <Property Name="DonGia" Type="Int32" Nullable="false" />
+    <Property Name="ThanhTien" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DatHang" Relationship="Self.FK_ChiTietDatHang_DatHang" FromRole="ChiTietDatHang" ToRole="DatHang" />
+    <NavigationProperty Name="SanPham" Relationship="Self.FK_ChiTietDatHang_SanPham" FromRole="ChiTietDatHang" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="DatHang">
+    <Key>
+      <PropertyRef Name="DatHangID" />
+    </Key>
+    <Property Name="DatHangID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoDem" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="Boolean" Nullable="false" />
+    <Property Name="TongSoLuong" Type="Byte" Nullable="false" />
+    <Property Name="TongThanhTien" Type="Int32" Nullable="false" />
+    <Property Name="NgayDatHang" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TrangThai" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ChiTietDatHangs" Relationship="Self.FK_ChiTietDatHang_DatHang" FromRole="DatHang" ToRole="ChiTietDatHang" />
+  </EntityType>
+  <EntityType Name="HopThu">
+    <Key>
+      <PropertyRef Name="HopThuID" />
+    </Key>
+    <Property Name="HopThuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgayGui" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="NhomSanPham">
+    <Key>
+      <PropertyRef Name="NhomSanPhamID" />
+    </Key>
+    <Property Name="NhomSanPhamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNhom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PhanLoaiID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PhanLoai" Relationship="Self.FK_NhomSanPham_PhanLoai" FromRole="NhomSanPham" ToRole="PhanLoai" />
+    <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_NhomSanPham" FromRole="NhomSanPham" ToRole="SanPham" />
+    <Property Name="BiDanh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PhanLoai">
+    <Key>
+      <PropertyRef Name="PhanLoaiID" />
+    </Key>
+    <Property Name="PhanLoaiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenPhanLoai" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="NhomSanPhams" Relationship="Self.FK_NhomSanPham_PhanLoai" FromRole="PhanLoai" ToRole="NhomSanPham" />
+    <Property Name="BiDanh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSanPham" />
+    </Key>
+    <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NhomSanPhamID" Type="Int32" Nullable="false" />
+    <Property Name="TenSanPham" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DonGia" Type="Int32" Nullable="false" />
+    <Property Name="Hinh" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="BiDanh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NgayCapNhat" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ChiTietDatHangs" Relationship="Self.FK_ChiTietDatHang_SanPham" FromRole="SanPham" ToRole="ChiTietDatHang" />
+    <NavigationProperty Name="NhomSanPham" Relationship="Self.FK_SanPham_NhomSanPham" FromRole="SanPham" ToRole="NhomSanPham" />
+  </EntityType>
+  <Association Name="FK_ChiTietDatHang_DatHang">
+    <End Role="DatHang" Type="Self.DatHang" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ChiTietDatHang" Type="Self.ChiTietDatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DatHang">
+        <PropertyRef Name="DatHangID" />
+      </Principal>
+      <Dependent Role="ChiTietDatHang">
+        <PropertyRef Name="DatHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietDatHang_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="ChiTietDatHang" Type="Self.ChiTietDatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSanPham" />
+      </Principal>
+      <Dependent Role="ChiTietDatHang">
+        <PropertyRef Name="MaSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NhomSanPham_PhanLoai">
+    <End Role="PhanLoai" Type="Self.PhanLoai" Multiplicity="1" />
+    <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhanLoai">
+        <PropertyRef Name="PhanLoaiID" />
+      </Principal>
+      <Dependent Role="NhomSanPham">
+        <PropertyRef Name="PhanLoaiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_NhomSanPham">
+    <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhomSanPham">
+        <PropertyRef Name="NhomSanPhamID" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="NhomSanPhamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShopAroundEntities" annotation:LazyLoadingEnabled="false">
+    <EntitySet Name="ChiTietDatHangs" EntityType="Self.ChiTietDatHang" />
+    <EntitySet Name="DatHangs" EntityType="Self.DatHang" />
+    <EntitySet Name="HopThus" EntityType="Self.HopThu" />
+    <EntitySet Name="NhomSanPhams" EntityType="Self.NhomSanPham" />
+    <EntitySet Name="PhanLoais" EntityType="Self.PhanLoai" />
+    <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+    <AssociationSet Name="FK_ChiTietDatHang_DatHang" Association="Self.FK_ChiTietDatHang_DatHang">
+      <End Role="DatHang" EntitySet="DatHangs" />
+      <End Role="ChiTietDatHang" EntitySet="ChiTietDatHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietDatHang_SanPham" Association="Self.FK_ChiTietDatHang_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="ChiTietDatHang" EntitySet="ChiTietDatHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NhomSanPham_PhanLoai" Association="Self.FK_NhomSanPham_PhanLoai">
+      <End Role="PhanLoai" EntitySet="PhanLoais" />
+      <End Role="NhomSanPham" EntitySet="NhomSanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_NhomSanPham" Association="Self.FK_SanPham_NhomSanPham">
+      <End Role="NhomSanPham" EntitySet="NhomSanPhams" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
