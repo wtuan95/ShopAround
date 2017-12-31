@@ -37,7 +37,7 @@ namespace ShopAround.Admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::OnlineShop.Admin.Pages.Menu Menu;
+        protected global::ShopAround.Admin.Pages.Menu Menu;
         
         /// <summary>
         /// Content control.

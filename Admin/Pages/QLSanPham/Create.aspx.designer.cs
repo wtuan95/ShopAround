@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineShop.Admin.Pages.QLSanPham {
+namespace ShopAround.Admin.Pages.QLSanPham {
     
     
     public partial class Create {
@@ -31,12 +31,12 @@ namespace OnlineShop.Admin.Pages.QLSanPham {
         protected global::System.Web.UI.WebControls.ObjectDataSource objSourceSanPham;
         
         /// <summary>
-        /// objSourceCategory control.
+        /// linqSourceNhomSanPham control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource objSourceCategory;
+        protected global::System.Web.UI.WebControls.LinqDataSource linqSourceNhomSanPham;
     }
 }

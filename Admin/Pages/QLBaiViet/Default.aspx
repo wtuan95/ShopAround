@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Danh sách sản phẩm" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShopAround.Admin.Pages.QLSanPham.Default" %>
+﻿<%@ Page Title="Danh sách bài viết" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShopAround.Admin.Pages.QLBaiViet.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
@@ -15,41 +15,45 @@
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Mã sản phẩm</th>
-                                <th>Sản phẩm</th>
-                                <th>Giá bán</th>
-                                <th>Thuộc nhóm</th>
+                                <th>Mã bài viết</th>
+                                <th>Tên bài viết</th>
+                                <th>Số lần đọc</th>
                                 <th>Bí danh</th>
                                 <th>Thành viên đăng</th>
+                                <th>Ngày đăng</th>
+                                <th>Trạng thái</th>
                                 <th class="text-center sorting_asc_disabled sorting_desc_disabled"></th>
                                 <th class="text-center sorting_asc_disabled sorting_desc_disabled"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <asp:Repeater ID="repeaterSanPham" runat="server" ItemType="ShopAround.Models.SanPham" DataSourceID="LinqDataSource1" >
+                            <asp:Repeater ID="repeaterBaiViet" runat="server" ItemType="ShopAround.Models.TinTuc" DataSourceID="LinqDataSource1" >
                                 <ItemTemplate>
                                     <tr>
-                                        <td><%# Eval("MaSanPham") %></td>
+                                        <td><%# Eval("maBV") %></td>
                                         <td>
-                                            <a href="<%# GetRouteUrl("ProductDetailRoute",new { alias = Eval("BiDanh"),id = Eval("MaSanPham") }) %>" target="_blank"><%# Eval("TenSanPham") %></a>
+                                            <a href="<%# GetRouteUrl("PostContentRoute",new { bidanh = Eval("biDanh") }) %>" target="_blank"><%# Eval("tenBV") %></a>
                                         </td>
                                          <td>
-                                             <%# Eval("DonGia","{0:#,##0}").Replace(',','.') %> đ
+                                             <%# Eval("soLanDoc") %> 
                                         </td>
                                         <td>
-                                            <%# Eval("NhomSanPham.TenNhom") %> 
-                                        </td>
-                                        <td>
-                                            <%# Eval("BiDanh") %> 
+                                            <%# Eval("biDanh") %> 
                                         </td>
                                         <td>
                                             <%# Eval("tkThanhVien") %> 
                                         </td>
+                                        <td>
+                                            <%# Eval("ngayDang","{0:dd/MM/yyyy}") %>
+                                        </td>
+                                        <td>
+                                            <%# (bool)Eval("daDuyet") == true ? "<span class='label label-success'>Đã duyệt</span>": "<span class='label label-warning'>Chưa duyệt</span>" %>
+                                        </td>
                                         <td class="text-center">
-                                            <a href="Info.aspx?MaSanPham=<%# Eval("MaSanPham") %>" class="btn btn-danger btn-sm">Thông tin</a>
+                                            <a href="Info.aspx?maBV=<%# Eval("maBV") %>" class="btn btn-danger btn-sm">Thông tin</a>
                                         </td>
                                           <td class="text-center">
-                                            <a onclick="return confirm('Xác nhận xóa <%# Eval("TenSanPham") %> ?');" href="Delete.aspx?MaSanPham=<%# Eval("MaSanPham") %>" class="btn btn-default btn-sm">Xóa</a>
+                                            <a onclick="return confirm('Xác nhận xóa <%# Eval("tenBV") %> ?');" href="Delete.aspx?maBV=<%# Eval("maBV") %>" class="btn btn-default btn-sm">Xóa</a>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -59,7 +63,7 @@
                     </table>
                 </div>
             </div>
-                                <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="ShopAround.Models.ShopAroundEntities" EntityTypeName="" TableName="SanPhams"></asp:LinqDataSource>
+                                <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="ShopAround.Models.ShopAroundEntities" EntityTypeName="" TableName="TinTucs"></asp:LinqDataSource>
 
         </div>
     </div>

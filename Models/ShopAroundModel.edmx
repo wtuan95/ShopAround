@@ -87,8 +87,8 @@
           <Property Name="NhomSanPhamID" Type="int" Nullable="false" />
           <Property Name="TenSanPham" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="DonGia" Type="int" Nullable="false" />
-          <Property Name="Hinh" Type="char" MaxLength="20" />
-          <Property Name="BiDanh" Type="varchar" MaxLength="100" />
+          <Property Name="Hinh" Type="varchar" MaxLength="250" />
+          <Property Name="BiDanh" Type="varchar" MaxLength="200" />
           <Property Name="ndTomTat" Type="nvarchar(max)" />
           <Property Name="ndDayDu" Type="nvarchar(max)" />
           <Property Name="NgayCapNhat" Type="datetime" Nullable="false" />
@@ -298,7 +298,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ShopAroundEntities" annotation:LazyLoadingEnabled="false">
+        <EntityContainer Name="ShopAroundEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietDatHangs" EntityType="Self.ChiTietDatHang" />
           <EntitySet Name="NhomSanPhams" EntityType="Self.NhomSanPham" />
           <EntitySet Name="PhanLoais" EntityType="Self.PhanLoai" />
@@ -309,14 +309,9 @@
           <EntitySet Name="DatHangs" EntityType="ShopAroundModel.DatHang" />
           <EntitySet Name="HopThus" EntityType="ShopAroundModel.HopThu" />
           <EntitySet Name="QuanTris" EntityType="ShopAroundModel.QuanTri" />
-          <EntitySet Name="SanPhams" EntityType="ShopAroundModel.SanPham" />
           <EntitySet Name="TinTucs" EntityType="ShopAroundModel.TinTuc" />
           <AssociationSet Name="FK_ChiTietDatHang_DatHang" Association="ShopAroundModel.FK_ChiTietDatHang_DatHang">
             <End Role="DatHang" EntitySet="DatHangs" />
-            <End Role="ChiTietDatHang" EntitySet="ChiTietDatHangs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChiTietDatHang_SanPham" Association="ShopAroundModel.FK_ChiTietDatHang_SanPham">
-            <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="ChiTietDatHang" EntitySet="ChiTietDatHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_DatHang_QuanTri" Association="ShopAroundModel.FK_DatHang_QuanTri">
@@ -327,6 +322,15 @@
             <End Role="QuanTri" EntitySet="QuanTris" />
             <End Role="HopThu" EntitySet="HopThus" />
           </AssociationSet>
+          <AssociationSet Name="FK_TinTuc_QuanTri" Association="ShopAroundModel.FK_TinTuc_QuanTri">
+            <End Role="QuanTri" EntitySet="QuanTris" />
+            <End Role="TinTuc" EntitySet="TinTucs" />
+          </AssociationSet>
+          <EntitySet Name="SanPhams" EntityType="ShopAroundModel.SanPham" />
+          <AssociationSet Name="FK_ChiTietDatHang_SanPham" Association="ShopAroundModel.FK_ChiTietDatHang_SanPham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="ChiTietDatHang" EntitySet="ChiTietDatHangs" />
+          </AssociationSet>
           <AssociationSet Name="FK_SanPham_NhomSanPham" Association="ShopAroundModel.FK_SanPham_NhomSanPham">
             <End Role="NhomSanPham" EntitySet="NhomSanPhams" />
             <End Role="SanPham" EntitySet="SanPhams" />
@@ -334,10 +338,6 @@
           <AssociationSet Name="FK_SanPham_QuanTri" Association="ShopAroundModel.FK_SanPham_QuanTri">
             <End Role="QuanTri" EntitySet="QuanTris" />
             <End Role="SanPham" EntitySet="SanPhams" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TinTuc_QuanTri" Association="ShopAroundModel.FK_TinTuc_QuanTri">
-            <End Role="QuanTri" EntitySet="QuanTris" />
-            <End Role="TinTuc" EntitySet="TinTucs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="DatHang">
@@ -390,26 +390,8 @@
           <Property Name="ghiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DatHangs" Relationship="ShopAroundModel.FK_DatHang_QuanTri" FromRole="QuanTri" ToRole="DatHang" />
           <NavigationProperty Name="HopThus" Relationship="ShopAroundModel.FK_HopThu_QuanTri" FromRole="QuanTri" ToRole="HopThu" />
-          <NavigationProperty Name="SanPhams" Relationship="ShopAroundModel.FK_SanPham_QuanTri" FromRole="QuanTri" ToRole="SanPham" />
           <NavigationProperty Name="TinTucs" Relationship="ShopAroundModel.FK_TinTuc_QuanTri" FromRole="QuanTri" ToRole="TinTuc" />
-        </EntityType>
-        <EntityType Name="SanPham">
-          <Key>
-            <PropertyRef Name="MaSanPham" />
-          </Key>
-          <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NhomSanPhamID" Type="Int32" Nullable="false" />
-          <Property Name="TenSanPham" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="DonGia" Type="Int32" Nullable="false" />
-          <Property Name="Hinh" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-          <Property Name="BiDanh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ndTomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ndDayDu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NgayCapNhat" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="tkThanhVien" Type="String" MaxLength="68" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ChiTietDatHangs" Relationship="ShopAroundModel.FK_ChiTietDatHang_SanPham" FromRole="SanPham" ToRole="ChiTietDatHang" />
-          <NavigationProperty Name="NhomSanPham" Relationship="ShopAroundModel.FK_SanPham_NhomSanPham" FromRole="SanPham" ToRole="NhomSanPham" />
-          <NavigationProperty Name="QuanTri" Relationship="ShopAroundModel.FK_SanPham_QuanTri" FromRole="SanPham" ToRole="QuanTri" />
+          <NavigationProperty Name="SanPhams" Relationship="ShopAroundModel.FK_SanPham_QuanTri" FromRole="QuanTri" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="TinTuc">
           <Key>
@@ -441,18 +423,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ChiTietDatHang_SanPham">
-          <End Type="ShopAroundModel.SanPham" Role="SanPham" Multiplicity="1" />
-          <End Type="ShopAroundModel.ChiTietDatHang" Role="ChiTietDatHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="MaSanPham" />
-            </Principal>
-            <Dependent Role="ChiTietDatHang">
-              <PropertyRef Name="MaSanPham" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DatHang_QuanTri">
           <End Type="ShopAroundModel.QuanTri" Role="QuanTri" Multiplicity="0..1" />
           <End Type="ShopAroundModel.DatHang" Role="DatHang" Multiplicity="*" />
@@ -477,6 +447,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TinTuc_QuanTri">
+          <End Type="ShopAroundModel.QuanTri" Role="QuanTri" Multiplicity="1" />
+          <End Type="ShopAroundModel.TinTuc" Role="TinTuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuanTri">
+              <PropertyRef Name="tkThanhVien" />
+            </Principal>
+            <Dependent Role="TinTuc">
+              <PropertyRef Name="tkThanhVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="MaSanPham" />
+          </Key>
+          <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NhomSanPhamID" Type="Int32" Nullable="false" />
+          <Property Name="TenSanPham" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DonGia" Type="Int32" Nullable="false" />
+          <Property Name="Hinh" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BiDanh" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ndTomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ndDayDu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tkThanhVien" Type="String" MaxLength="68" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ChiTietDatHangs" Relationship="ShopAroundModel.FK_ChiTietDatHang_SanPham" FromRole="SanPham" ToRole="ChiTietDatHang" />
+          <NavigationProperty Name="NhomSanPham" Relationship="ShopAroundModel.FK_SanPham_NhomSanPham" FromRole="SanPham" ToRole="NhomSanPham" />
+          <NavigationProperty Name="QuanTri" Relationship="ShopAroundModel.FK_SanPham_QuanTri" FromRole="SanPham" ToRole="QuanTri" />
+        </EntityType>
+        <Association Name="FK_ChiTietDatHang_SanPham">
+          <End Type="ShopAroundModel.SanPham" Role="SanPham" Multiplicity="1" />
+          <End Type="ShopAroundModel.ChiTietDatHang" Role="ChiTietDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSanPham" />
+            </Principal>
+            <Dependent Role="ChiTietDatHang">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SanPham_NhomSanPham">
           <End Type="ShopAroundModel.NhomSanPham" Role="NhomSanPham" Multiplicity="1" />
           <End Type="ShopAroundModel.SanPham" Role="SanPham" Multiplicity="*" />
@@ -497,18 +509,6 @@
               <PropertyRef Name="tkThanhVien" />
             </Principal>
             <Dependent Role="SanPham">
-              <PropertyRef Name="tkThanhVien" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TinTuc_QuanTri">
-          <End Type="ShopAroundModel.QuanTri" Role="QuanTri" Multiplicity="1" />
-          <End Type="ShopAroundModel.TinTuc" Role="TinTuc" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="QuanTri">
-              <PropertyRef Name="tkThanhVien" />
-            </Principal>
-            <Dependent Role="TinTuc">
               <PropertyRef Name="tkThanhVien" />
             </Dependent>
           </ReferentialConstraint>
@@ -598,22 +598,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SanPhams">
-            <EntityTypeMapping TypeName="ShopAroundModel.SanPham">
-              <MappingFragment StoreEntitySet="SanPham">
-                <ScalarProperty Name="tkThanhVien" ColumnName="tkThanhVien" />
-                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
-                <ScalarProperty Name="ndDayDu" ColumnName="ndDayDu" />
-                <ScalarProperty Name="ndTomTat" ColumnName="ndTomTat" />
-                <ScalarProperty Name="BiDanh" ColumnName="BiDanh" />
-                <ScalarProperty Name="Hinh" ColumnName="Hinh" />
-                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
-                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
-                <ScalarProperty Name="NhomSanPhamID" ColumnName="NhomSanPhamID" />
-                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TinTucs">
             <EntityTypeMapping TypeName="ShopAroundModel.TinTuc">
               <MappingFragment StoreEntitySet="TinTuc">
@@ -627,6 +611,22 @@
                 <ScalarProperty Name="ngayDang" ColumnName="ngayDang" />
                 <ScalarProperty Name="tenBV" ColumnName="tenBV" />
                 <ScalarProperty Name="maBV" ColumnName="maBV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SanPhams">
+            <EntityTypeMapping TypeName="ShopAroundModel.SanPham">
+              <MappingFragment StoreEntitySet="SanPham">
+                <ScalarProperty Name="tkThanhVien" ColumnName="tkThanhVien" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="ndDayDu" ColumnName="ndDayDu" />
+                <ScalarProperty Name="ndTomTat" ColumnName="ndTomTat" />
+                <ScalarProperty Name="BiDanh" ColumnName="BiDanh" />
+                <ScalarProperty Name="Hinh" ColumnName="Hinh" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="NhomSanPhamID" ColumnName="NhomSanPhamID" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

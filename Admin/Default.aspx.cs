@@ -11,7 +11,7 @@ namespace ShopAround.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("QLSanPham", false);
+            Response.Redirect("Pages/QLSanPham", false);
         }
     }
 }

@@ -12,15 +12,15 @@
         <EntityTypeShape EntityType="ShopAroundModel.DatHang" Width="1.5" PointX="3" PointY="7.75" />
         <EntityTypeShape EntityType="ShopAroundModel.HopThu" Width="1.5" PointX="3" PointY="4.25" />
         <EntityTypeShape EntityType="ShopAroundModel.QuanTri" Width="1.5" PointX="0.75" PointY="7.875" />
-        <EntityTypeShape EntityType="ShopAroundModel.SanPham" Width="1.5" PointX="6" PointY="4.125" />
         <EntityTypeShape EntityType="ShopAroundModel.TinTuc" Width="1.5" PointX="3" PointY="16.5" />
         <AssociationConnector Association="ShopAroundModel.FK_ChiTietDatHang_DatHang" />
-        <AssociationConnector Association="ShopAroundModel.FK_ChiTietDatHang_SanPham" />
         <AssociationConnector Association="ShopAroundModel.FK_DatHang_QuanTri" />
         <AssociationConnector Association="ShopAroundModel.FK_HopThu_QuanTri" />
+        <AssociationConnector Association="ShopAroundModel.FK_TinTuc_QuanTri" />
+        <EntityTypeShape EntityType="ShopAroundModel.SanPham" Width="1.5" PointX="6" PointY="3.5" />
+        <AssociationConnector Association="ShopAroundModel.FK_ChiTietDatHang_SanPham" />
         <AssociationConnector Association="ShopAroundModel.FK_SanPham_NhomSanPham" />
         <AssociationConnector Association="ShopAroundModel.FK_SanPham_QuanTri" />
-        <AssociationConnector Association="ShopAroundModel.FK_TinTuc_QuanTri" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -80,22 +80,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SanPhams">
-      <EntityTypeMapping TypeName="ShopAroundModel.SanPham">
-        <MappingFragment StoreEntitySet="SanPham">
-          <ScalarProperty Name="tkThanhVien" ColumnName="tkThanhVien" />
-          <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
-          <ScalarProperty Name="ndDayDu" ColumnName="ndDayDu" />
-          <ScalarProperty Name="ndTomTat" ColumnName="ndTomTat" />
-          <ScalarProperty Name="BiDanh" ColumnName="BiDanh" />
-          <ScalarProperty Name="Hinh" ColumnName="Hinh" />
-          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
-          <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
-          <ScalarProperty Name="NhomSanPhamID" ColumnName="NhomSanPhamID" />
-          <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TinTucs">
       <EntityTypeMapping TypeName="ShopAroundModel.TinTuc">
         <MappingFragment StoreEntitySet="TinTuc">
@@ -109,6 +93,22 @@
           <ScalarProperty Name="ngayDang" ColumnName="ngayDang" />
           <ScalarProperty Name="tenBV" ColumnName="tenBV" />
           <ScalarProperty Name="maBV" ColumnName="maBV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanPhams">
+      <EntityTypeMapping TypeName="ShopAroundModel.SanPham">
+        <MappingFragment StoreEntitySet="SanPham">
+          <ScalarProperty Name="tkThanhVien" ColumnName="tkThanhVien" />
+          <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+          <ScalarProperty Name="ndDayDu" ColumnName="ndDayDu" />
+          <ScalarProperty Name="ndTomTat" ColumnName="ndTomTat" />
+          <ScalarProperty Name="BiDanh" ColumnName="BiDanh" />
+          <ScalarProperty Name="Hinh" ColumnName="Hinh" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+          <ScalarProperty Name="NhomSanPhamID" ColumnName="NhomSanPhamID" />
+          <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

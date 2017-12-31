@@ -18,7 +18,6 @@ namespace ShopAround.Models
         public ShopAroundEntities()
             : base("name=ShopAroundEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -32,7 +31,7 @@ namespace ShopAround.Models
         public virtual DbSet<DatHang> DatHangs { get; set; }
         public virtual DbSet<HopThu> HopThus { get; set; }
         public virtual DbSet<QuanTri> QuanTris { get; set; }
-        public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<TinTuc> TinTucs { get; set; }
+        public virtual DbSet<SanPham> SanPhams { get; set; }
     }
 }

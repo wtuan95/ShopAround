@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Thông tin sản phẩm" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Info.aspx.cs" Inherits="ShopAround.Admin.Pages.QLSanPham.Info" %>
+﻿<%@ Page Title="Thông tin bài viết" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Info.aspx.cs" Inherits="ShopAround.Admin.Pages.QLBaiViet.Info" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css">
@@ -146,25 +146,17 @@
                     <!-- /.toolbar -->
 
                 </header>
-                <asp:FormView ValidateRequestMode="Disabled"  ItemType="ShopAround.Models.SanPham" ID="frmViewSanPham" runat="server" RenderOuterTable="false"  DataSourceID="objSourceSanPham" OnItemUpdating="frmViewSanPham_ItemUpdating">
+                <asp:FormView ValidateRequestMode="Disabled"  ItemType="ShopAround.Models.TinTuc" ID="frmViewBaiViet" runat="server" RenderOuterTable="false"  DataSourceID="objSourceBaiViet" OnItemUpdating="frmViewBaiViet_ItemUpdating">
                     <EditItemTemplate>
                         <div id="collapse2" class="body">
                             <div class="form-horizontal" id="popup-validation">
 
-                                <asp:HiddenField ID="MaSanPhamHidden" Value='<%# Bind("MaSanPham") %>' runat="server" />
+                                <asp:HiddenField ID="maBVHidden" Value='<%# Bind("maBV") %>' runat="server" />
                                 <div class="form-group">
-                                    <label class="control-label col-lg-4">Tên sản phẩm</label>
+                                    <label class="control-label col-lg-4">Tên bài viết</label>
                                     <div class="col-lg-4">
-                                        <asp:TextBox ID="TenSanPhamTextBox" CssClass="form-control" runat="server" Text='<%# Bind("TenSanPham") %>' />
-                                        <asp:RequiredFieldValidator CssClass="text-danger" Display="Dynamic" ValidationGroup="suasp" ControlToValidate="TenSanPhamTextBox" ID="RequiredFieldValidator1" runat="server" ErrorMessage="Tên sản phẩm không được bỏ trống!"></asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-lg-4">Nhóm sản phẩm</label>
-                                    <div class="col-lg-4">
-                                        <asp:DropDownList ID="lstNhomSanPham"  CssClass="form-control" DataSourceID="linqSourceNhomSanPham" DataValueField="NhomSanPhamID" DataTextField="TenNhom" SelectedValue='<%# Bind("NhomSanPhamID") %>' runat="server"></asp:DropDownList>
-                                        <asp:RequiredFieldValidator ValidationGroup="suasp" CssClass="text-danger" Display="Dynamic" ControlToValidate="lstNhomSanPham" ID="RequiredFieldValidator5" runat="server" ErrorMessage="Bạn cần chọn nhóm sản phẩm của sản phẩm!"></asp:RequiredFieldValidator>
+                                        <asp:TextBox ID="tenBVTextBox" CssClass="form-control" runat="server" Text='<%# Bind("tenBV") %>' />
+                                        <asp:RequiredFieldValidator CssClass="text-danger" Display="Dynamic" ValidationGroup="suabv" ControlToValidate="tenBVTextBox" ID="RequiredFieldValidator1" runat="server" ErrorMessage="Tên bài viết không được bỏ trống!"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
@@ -175,13 +167,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="control-label col-lg-4">Đơn giá</label>
-                                    <div class="col-lg-4">
-                                        <asp:TextBox ID="DonGiaTextBox" TextMode="Number" CssClass="form-control" runat="server" Text='<%# Bind("DonGia") %>' />
-                                        <asp:RequiredFieldValidator CssClass="text-danger" Display="Dynamic" ValidationGroup="suasp" ControlToValidate="DonGiaTextBox" ID="RequiredFieldValidator4" runat="server" ErrorMessage="Đơn giá không được bỏ trống!"></asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
 
 
                                 <div class="form-group">
@@ -195,22 +180,29 @@
                                 <div class="form-group">
                                     <label class="control-label col-lg-4">Bí danh</label>
                                     <div class="col-lg-4">
-                                        <asp:TextBox ID="BiDanhTextBox" CssClass="form-control" runat="server" Text='<%# Bind("BiDanh") %>' />
-                                        <asp:RequiredFieldValidator CssClass="text-danger" Display="Dynamic" ValidationGroup="suasp" ControlToValidate="BiDanhTextBox" ID="RequiredFieldValidator2" runat="server" ErrorMessage="Bí danh không được bỏ trống!"></asp:RequiredFieldValidator>
+                                        <asp:TextBox ID="biDanhTextBox" CssClass="form-control" runat="server" Text='<%# Bind("biDanh") %>' />
+                                        <asp:RequiredFieldValidator CssClass="text-danger" Display="Dynamic" ValidationGroup="suabv" ControlToValidate="biDanhTextBox" ID="RequiredFieldValidator2" runat="server" ErrorMessage="Bí danh không được bỏ trống!"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Trạng thái</label>
+                                    <div class="col-lg-4">
+                                        <asp:CheckBox ID="daDuyetCheckBox" runat="server" Checked='<%# Bind("daDuyet") %>' />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label col-lg-4">Nội dung</label>
                                     <div class="col-lg-8">
-                                        <asp:TextBox TextMode="MultiLine" ClientIDMode="Static" ID="ndDayDuTextBox" CssClass="form-control" runat="server" Text='<%# Bind("ndDayDu") %>' />
+                                        <asp:TextBox TextMode="MultiLine" ClientIDMode="Static" ID="noiDungBVTextBox" CssClass="form-control" runat="server" Text='<%# Bind("noiDungBV") %>' />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-lg-4 col-lg-offset-4">
-                                        <asp:LinkButton CssClass="btn btn-danger" ValidationGroup="suasp" ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Cập nhật" />
-                                        &nbsp;<a href="Info.aspx?MaSanPham=<%# Eval("MaSanPham") %>" class="btn btn-default">Trở về</a>
+                                        <asp:LinkButton CssClass="btn btn-danger" ValidationGroup="suabv" ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Cập nhật" />
+                                        &nbsp;<a href="Info.aspx?maBV=<%# Eval("maBV") %>" class="btn btn-default">Trở về</a>
                                     </div>
                                 </div>
                             </div>
@@ -221,31 +213,23 @@
                             <div class="form-horizontal" id="popup-validation">
 
                                 <div class="form-group">
-                                    <label class="control-label col-lg-4">Mã sản phẩm</label>
+                                    <label class="control-label col-lg-4">Mã bài viết</label>
                                     <div class="col-lg-4 labelInfo">
-                                        <asp:Label ID="MaSanPhamLabel" runat="server" Text='<%# Bind("MaSanPham") %>' />
+                                        <asp:Label ID="maBVLabel" runat="server" Text='<%# Bind("maBV") %>' />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-lg-4">Tên sản phẩm</label>
+                                    <label class="control-label col-lg-4">Tên bài viết</label>
                                     <div class="col-lg-4 labelInfo">
-                                        <asp:Label ID="TenSanPhamLabel" runat="server" Text='<%# Bind("TenSanPham") %>' />
+                                        <asp:Label ID="tenBVLabel" runat="server" Text='<%# Bind("tenBV") %>' />
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-lg-4">Nhóm sản phẩm</label>
-                                    <div class="col-lg-4 labelInfo">
-                                        <asp:Label ID="NhomSanPhamLabel" runat="server" Text='<%# Bind("NhomSanPham.TenNhom") %>' />
-                                    </div>
-                                </div>
-
 
                                 <div class="form-group">
                                     <label class="control-label col-lg-4">Hình đại diện</label>
                                     <div class="col-lg-4 labelInfo">
-                                        <img class="popupImage hidden" alt="<%# Eval("TenSanPham") %>" id="popupImage" src="/Photos/Products/<%# Eval("Hinh") %>" />
+                                        <img class="popupImage hidden" alt="<%# Eval("tenBV") %>" id="popupImage" src="/Photos/Posts/<%# Eval("hinhDD") %>" />
                                         <a href="javascript:document.getElementById('popupImage').click()">Xem hình</a>
                                         <!-- The Modal -->
                                         <div id="modalShowImage" class="modal-Image">
@@ -256,13 +240,6 @@
                                             <!-- Modal Caption (Image Text) -->
                                             <div id="caption"></div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-lg-4">Đơn giá</label>
-                                    <div class="col-lg-4 labelInfo">
-                                        <asp:Label ID="DonGiaLabel" runat="server" Text='<%# Bind("DonGia") %>' />
                                     </div>
                                 </div>
 
@@ -279,11 +256,11 @@
                                         <asp:Label ID="tkThanhVienLabel" runat="server" Text='<%# Bind("tkThanhVien") %>' />
                                     </div>
                                 </div>
-
+                                
                                 <div class="form-group">
-                                    <label class="control-label col-lg-4">Cập nhật lần cuối</label>
+                                    <label class="control-label col-lg-4">Ngày đăng</label>
                                     <div class="col-lg-4 labelInfo">
-                                        <asp:Label ID="NgayCapNhatLabel" runat="server" Text='<%# Bind("NgayCapNhat") %>' />
+                                        <asp:Label ID="ngayDangLabel" runat="server" Text='<%# Bind("ngayDang") %>' />
                                     </div>
                                 </div>
 
@@ -299,10 +276,10 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header bg-info">
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                            <h4 class="modal-title">Nội dung sản phẩm</h4>
+                                                            <h4 class="modal-title">Nội dung</h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                          <asp:Label ID="DetailLabel" runat="server" Text='<%# Bind("ndDayDu") %>' />
+                                                          <asp:Label ID="DetailLabel" runat="server" Text='<%# Bind("noiDungBV") %>' />
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -311,6 +288,27 @@
 
                                                 </div>
                                             </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Số lần đọc</label>
+                                    <div class="col-lg-4 labelInfo">
+                                        <asp:Label ID="soLanDocLabel" runat="server" Text='<%# Bind("soLanDoc") %>' />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Bí danh</label>
+                                    <div class="col-lg-4 labelInfo">
+                                        <asp:Label ID="biDanhLabel" runat="server" Text='<%# Bind("biDanh") %>' />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Trạng thái</label>
+                                    <div class="col-lg-4 labelInfo">
+                                        <asp:Label ID="daDuyetLabel" runat="server" Text='<%# Bind("daDuyet")%>' />
                                     </div>
                                 </div>
 
@@ -329,23 +327,21 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <asp:ObjectDataSource ID="objSourceSanPham" TypeName="ShopAround.Admin.Pages.QLSanPham.Info" runat="server" SelectMethod="ViewDetail" UpdateMethod="Edit">
+    <asp:ObjectDataSource ID="objSourceBaiViet" TypeName="ShopAround.Admin.Pages.QLBaiViet.Info" runat="server" SelectMethod="ViewDetail" UpdateMethod="Edit">
         <SelectParameters>
-            <asp:QueryStringParameter Name="MaSanPham" QueryStringField="MaSanPham" Type="Int32" />
+            <asp:QueryStringParameter Name="maBV" QueryStringField="maBV" Type="Int32" />
         </SelectParameters>
         <UpdateParameters>
-                <asp:FormParameter DbType="Int32" FormField="MaSanPham" Name="MaSanPham" />
-                <asp:FormParameter DbType="String" FormField="TenSanPham" Name="TenSanPham" />
-                <asp:FormParameter DbType="Int32" FormField="NhomSanPhamID" Name="NhomSanPhamID" />
-                <asp:FormParameter DbType="Int32" FormField="DonGia" Name="DonGia" />
+                <asp:FormParameter DbType="Int32" FormField="maBV" Name="maBV" />
+                <asp:FormParameter DbType="String" FormField="tenBV" Name="tenBV" />
+                <asp:FormParameter DbType="Boolean" FormField="daDuyet" Name="daDuyet" />
                 <asp:FormParameter DbType="String" FormField="BiDanh" Name="BiDanh" />
                 <asp:FormParameter DbType="String" FormField="ndTomTat" Name="ndTomTat" />
-                <asp:FormParameter DbType="String" FormField="ndDayDu" Name="ndDayDu" />
-                <asp:Parameter DbType="String" Name="Hinh"   />
+                <asp:FormParameter DbType="String" FormField="noiDungBV" Name="noiDungBV" />
+                <asp:Parameter DbType="String" Name="hinhDD"   />
                 <asp:SessionParameter DbType="String" SessionField="tkThanhVien" Name="tkThanhVien" />
         </UpdateParameters>
     </asp:ObjectDataSource>
-    <asp:LinqDataSource ID="linqSourceNhomSanPham" runat="server" ContextTypeName="ShopAround.Models.ShopAroundEntities" EntityTypeName="" TableName="NhomSanPhams"></asp:LinqDataSource>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
@@ -379,7 +375,7 @@
     <script src="/ckeditor/config.js"></script>
     <script src="/ckfinder/ckfinder.js"></script>
     <script>
-        var editor = CKEDITOR.replace('ndDayDuTextBox');
+        var editor = CKEDITOR.replace('noiDungBVTextBox');
         CKFinder.setupCKEditor(editor, '/ckfinder/');
     </script>
 </asp:Content>

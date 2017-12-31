@@ -107,12 +107,19 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Photos\Admin\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AddProductToCart.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Pages\Menu.ascx" />
+    <Content Include="Admin\Pages\QLBaiViet\Create.aspx" />
+    <Content Include="Admin\Pages\QLBaiViet\Default.aspx" />
+    <Content Include="Admin\Pages\QLBaiViet\Delete.aspx" />
+    <Content Include="Admin\Pages\QLBaiViet\Info.aspx" />
+    <Content Include="Admin\Pages\QLDonHang\Default.aspx" />
     <Content Include="Admin\Pages\QLSanPham\Create.aspx" />
     <Content Include="Admin\Pages\QLSanPham\Default.aspx" />
     <Content Include="Admin\Pages\QLSanPham\Delete.aspx" />
@@ -139,6 +146,7 @@
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery.bxslider.css" />
     <Content Include="Content\pager.css" />
+    <Content Include="Content\popupimage\style.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\table.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -310,6 +318,7 @@
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Admin\Admin.Master" />
     <Content Include="Admin\Web.config" />
+    <Content Include="Admin\Pages\QLDonHang\Edit.ashx" />
     <None Include="Properties\PublishProfiles\ShopAround.pubxml" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
@@ -401,6 +410,44 @@
     </Compile>
     <Compile Include="Admin\Pages\Menu.ascx.designer.cs">
       <DependentUpon>Menu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\QLBaiViet\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\QLBaiViet\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\QLBaiViet\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\QLBaiViet\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\QLBaiViet\Delete.aspx.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\QLBaiViet\Delete.aspx.designer.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\QLBaiViet\Info.aspx.cs">
+      <DependentUpon>Info.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\QLBaiViet\Info.aspx.designer.cs">
+      <DependentUpon>Info.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\QLDonHang\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\QLDonHang\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\QLDonHang\Edit.ashx.cs">
+      <DependentUpon>Edit.ashx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Pages\QLSanPham\Create.aspx.cs">
       <DependentUpon>Create.aspx</DependentUpon>

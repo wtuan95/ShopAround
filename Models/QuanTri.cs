@@ -19,8 +19,8 @@ namespace ShopAround.Models
         {
             this.DatHangs = new HashSet<DatHang>();
             this.HopThus = new HashSet<HopThu>();
-            this.SanPhams = new HashSet<SanPham>();
             this.TinTucs = new HashSet<TinTuc>();
+            this.SanPhams = new HashSet<SanPham>();
         }
     
         public string tkThanhVien { get; set; }
@@ -40,8 +40,8 @@ namespace ShopAround.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HopThu> HopThus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SanPham> SanPhams { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TinTuc> TinTucs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SanPham> SanPhams { get; set; }
     }
 }

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Model.Dao;
-namespace OnlineShop.Admin.Pages.QLDonHang
+using ShopAround.Models;
+namespace ShopAround.Admin.Pages.QLDonHang
 {
     /// <summary>
     /// Summary description for Edit
@@ -13,9 +13,15 @@ namespace OnlineShop.Admin.Pages.QLDonHang
 
         public void ProcessRequest(HttpContext context)
         {
-            OrderDao orderDao = new OrderDao();
-            long ID = long.Parse(context.Request.QueryString["ID"]);
-            orderDao.Edit(ID);
+            ShopAroundEntities db = new ShopAroundEntities();
+            int DatHangID = int.Parse(context.Request.QueryString["DatHangID"]);
+            DatHang model = db.DatHangs.Find(DatHangID);
+            if (model != null)
+            {
+                model.TrangThai = !model.TrangThai;
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
             context.Response.Redirect(context.Request.UrlReferrer.ToString(), false);
         }
 

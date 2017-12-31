@@ -5,8 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Model.Dao;
-namespace OnlineShop.Admin.Pages.QLSanPham
+using ShopAround.Models;
+namespace ShopAround.Admin.Pages.QLSanPham
 {
     public partial class Create : System.Web.UI.Page
     {
@@ -22,20 +22,46 @@ namespace OnlineShop.Admin.Pages.QLSanPham
                 FileUpload f = frmCreateSanPham.FindControl("fileHinhDaiDien") as FileUpload;
                 if (f.HasFile && f.FileContent.Length > 0)
                 {
-                    FileInfo fInfo = new FileInfo(f.FileName);
-                    string extend = fInfo.Extension;
+                    FileInfo fInfole = new FileInfo(f.FileName);
+                    string extend = fInfole.Extension;
                     if (extend == ".jpg" || extend == ".jpeg" || extend == ".png")
                     {
-                        string hinhDaiDienMoi = "/assets/client/images/" + DateTime.Now.Ticks.ToString() + extend;
-                        objSourceSanPham.InsertParameters["Image"].DefaultValue = hinhDaiDienMoi;
-                        f.SaveAs(Server.MapPath("~" + hinhDaiDienMoi));
+                        string hinhDaiDienMoi = e.Values["BiDanh"] + DateTime.Now.Ticks.ToString() + extend;
+                        objSourceSanPham.InsertParameters["Hinh"].DefaultValue = hinhDaiDienMoi;
+                        f.SaveAs(Server.MapPath("~/Photos/Products/" + hinhDaiDienMoi));
                     }
                 }
-
-
+                else
+                {
+                    objSourceSanPham.InsertParameters["Hinh"].DefaultValue = null;
+                }
             }
-            Response.Redirect("/Admin/Pages/QLSanPham", false);
+            
         }
 
+        public void CreateProduct(string TenSanPham, int NhomSanPhamID, int DonGia, string Hinh, string BiDanh, string ndTomTat, string ndDayDu, string tkThanhVien)
+        {
+            SanPham model = new SanPham()
+            {
+                TenSanPham = TenSanPham,
+                NhomSanPhamID = NhomSanPhamID,
+                DonGia = DonGia,
+                Hinh = Hinh,
+                BiDanh = BiDanh,
+                ndTomTat = ndTomTat,
+                ndDayDu = ndDayDu,
+                NgayCapNhat = DateTime.Now,
+                tkThanhVien = tkThanhVien
+            };
+            ShopAroundEntities db = new ShopAroundEntities();
+            db.SanPhams.Add(model);
+            db.SaveChanges();
+            
+        }
+
+        protected void frmCreateSanPham_ItemInserted(object sender, FormViewInsertedEventArgs e)
+        {
+            Response.Redirect("Default");
+        }
     }
 }

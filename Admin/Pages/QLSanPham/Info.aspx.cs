@@ -47,21 +47,24 @@ namespace ShopAround.Admin.Pages.QLSanPham
 
         protected void frmViewSanPham_ItemUpdating(object sender, FormViewUpdateEventArgs e)
         {
-            FileUpload f = frmViewSanPham.FindControl("fileHinhDaiDien") as FileUpload;
-            if(f.HasFile && f.FileContent.Length > 0)
+            if (Page.IsValid)
             {
-                FileInfo fInfole = new FileInfo(f.FileName);
-                string extend = fInfole.Extension;
-                if (extend == ".jpg" || extend == ".jpeg" || extend == ".png")
+                FileUpload f = frmViewSanPham.FindControl("fileHinhDaiDien") as FileUpload;
+                if (f.HasFile && f.FileContent.Length > 0)
                 {
-                    string hinhDaiDienMoi = e.NewValues["BiDanh"] + DateTime.Now.Ticks.ToString() + extend;
-                    objSourceSanPham.UpdateParameters["Hinh"].DefaultValue = hinhDaiDienMoi;
-                    f.SaveAs(Server.MapPath("~/Photos/Products/"+ hinhDaiDienMoi));
+                    FileInfo fInfole = new FileInfo(f.FileName);
+                    string extend = fInfole.Extension;
+                    if (extend == ".jpg" || extend == ".jpeg" || extend == ".png")
+                    {
+                        string hinhDaiDienMoi = e.NewValues["BiDanh"] + DateTime.Now.Ticks.ToString() + extend;
+                        objSourceSanPham.UpdateParameters["Hinh"].DefaultValue = hinhDaiDienMoi;
+                        f.SaveAs(Server.MapPath("~/Photos/Products/" + hinhDaiDienMoi));
+                    }
                 }
-            }
-            else
-            {
-                objSourceSanPham.UpdateParameters["Hinh"].DefaultValue = null;
+                else
+                {
+                    objSourceSanPham.UpdateParameters["Hinh"].DefaultValue = null;
+                }
             }
         }
     }

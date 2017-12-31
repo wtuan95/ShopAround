@@ -7,18 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShopAround {
+namespace ShopAround.Admin.Pages.QLBaiViet {
     
     
-    public partial class Logout {
+    public partial class Info {
         
         /// <summary>
-        /// form1 control.
+        /// frmViewBaiViet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.FormView frmViewBaiViet;
+        
+        /// <summary>
+        /// objSourceBaiViet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource objSourceBaiViet;
     }
 }

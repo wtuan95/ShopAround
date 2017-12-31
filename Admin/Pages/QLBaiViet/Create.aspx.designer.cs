@@ -7,27 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineShop.Admin.Pages.QLHopThu {
+namespace ShopAround.Admin.Pages.QLBaiViet {
     
     
-    public partial class Default {
+    public partial class Create {
         
         /// <summary>
-        /// repeater control.
+        /// frmCreateBaiViet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repeater;
+        protected global::System.Web.UI.WebControls.FormView frmCreateBaiViet;
         
         /// <summary>
-        /// LinqDataSource1 control.
+        /// objSourceBaiViet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource LinqDataSource1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource objSourceBaiViet;
     }
 }

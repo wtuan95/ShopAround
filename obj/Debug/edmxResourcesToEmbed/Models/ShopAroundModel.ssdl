@@ -82,8 +82,8 @@
     <Property Name="NhomSanPhamID" Type="int" Nullable="false" />
     <Property Name="TenSanPham" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="DonGia" Type="int" Nullable="false" />
-    <Property Name="Hinh" Type="char" MaxLength="20" />
-    <Property Name="BiDanh" Type="varchar" MaxLength="100" />
+    <Property Name="Hinh" Type="varchar" MaxLength="250" />
+    <Property Name="BiDanh" Type="varchar" MaxLength="200" />
     <Property Name="ndTomTat" Type="nvarchar(max)" />
     <Property Name="ndDayDu" Type="nvarchar(max)" />
     <Property Name="NgayCapNhat" Type="datetime" Nullable="false" />

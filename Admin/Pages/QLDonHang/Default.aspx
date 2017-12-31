@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Danh sách đơn hàng" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="OnlineShop.Admin.Pages.QLDonHang.Default" %>
+﻿<%@ Page Title="Danh sách đơn hàng" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShopAround.Admin.Pages.QLDonHang.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>
@@ -12,7 +12,7 @@
                     <h5><%: Page.Title %></h5>
                 </header>
                 <div id="collapse4" class="body">
-                    <asp:ListView DataKeyNames="ID" ID="ListView1" runat="server"  DataSourceID="LinqDataSource1">
+                    <asp:ListView DataKeyNames="DatHangID" ID="ListView1" runat="server"  DataSourceID="LinqDataSource1">
                        
                         <EmptyDataTemplate>
                             <table runat="server" style="">
@@ -22,30 +22,30 @@
                             </table>
                         </EmptyDataTemplate>
                         <ItemTemplate>
-                            <tr class="<%# (int)Eval("Status") == 1 ? "bg-success" : "bg-default" %>">
+                            <tr class="<%# (bool)Eval("TrangThai") == true ? "bg-success" : "bg-default" %>">
                                 <td>
-                                    <asp:Label ID="IDLabel" runat="server" Text='<%# Eval("ID") %>' />
+                                    <asp:Label ID="DatHangIDLabel" runat="server" Text='<%# Eval("DatHangID") %>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="CreatedDateLabel" runat="server" Text='<%# Eval("CreatedDate") %>' />
+                                    <asp:Label ID="NgayDatHangLabel" runat="server" Text='<%# Eval("NgayDatHang") %>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="ShipNameLabel" runat="server" Text='<%# Eval("ShipName") %>' />
+                                    <asp:Label ID="HoTenLabel" runat="server" Text='<%# Eval("HoDem") + " " + Eval("Ten") %>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="ShipMobileLabel" runat="server" Text='<%# Eval("ShipMobile") %>' />
+                                    <asp:Label ID="SDTLabel" runat="server" Text='<%# Eval("SDT") %>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="ShipAddressLabel" runat="server" Text='<%# Eval("ShipAddress") %>' />
+                                    <asp:Label ID="DiaChiLabel" runat="server" Text='<%# Eval("DiaChi") %>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="ShipEmailLabel" runat="server" Text='<%# Eval("ShipEmail") %>' />
+                                    <asp:Label ID="EmailLabel" runat="server" Text='<%# Eval("Email") %>' />
                                 </td>
                                 <td>
-                                    <asp:Label ID="StatusLabel" runat="server" Text='<%# Eval("Status") %>' />
+                                    <asp:Label ID="TrangThaiLabel" runat="server" Text='<%# Eval("TrangThai") %>' />
                                 </td>
                                 <td>
-                                    <a class="btn btn-default btn-sm" href="Edit.ashx?ID=<%# Eval("ID") %>">Edit Status</a>
+                                    <a class="btn btn-default btn-sm" href="Edit.ashx?DatHangID=<%# Eval("DatHangID") %>">Sửa trạng thái</a>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -60,7 +60,7 @@
                                         <th runat="server">SĐT</th>
                                         <th runat="server">Địa chỉ</th>
                                         <th runat="server">Email</th>
-                                        <th runat="server">Status</th>
+                                        <th runat="server">Trạng thái</th>
                                         <th runat="server"></th>
                                     </tr>
                                 </thead>
@@ -86,7 +86,7 @@
                             
                         </LayoutTemplate>
                     </asp:ListView>
-                    <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="Model.EF.OnlineShopDbContext" EntityTypeName="" OrderBy="Status, ID" TableName="Orders" EnableUpdate="True"></asp:LinqDataSource>
+                    <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="ShopAround.Models.ShopAroundEntities" EntityTypeName="" OrderBy="TrangThai, DatHangID desc" TableName="DatHangs" EnableUpdate="True"></asp:LinqDataSource>
                 </div>
             </div>
         </div>

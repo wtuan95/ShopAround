@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="OnlineShop.Admin.Pages.QLHopThu.Edit" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Delete.aspx.cs" Inherits="ShopAround.Admin.Pages.QLBaiViet.Delete" %>
 
 <!DOCTYPE html>
 

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineShop.Admin.Pages.QLDonHang {
+namespace ShopAround.Admin.Pages.QLDonHang {
     
     
     public partial class Default {

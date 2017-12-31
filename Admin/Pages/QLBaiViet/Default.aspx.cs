@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-namespace OnlineShop.Admin.Pages.QLHopThu
+namespace ShopAround.Admin.Pages.QLBaiViet
 {
     public partial class Default : System.Web.UI.Page
     {

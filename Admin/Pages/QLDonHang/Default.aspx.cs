@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace OnlineShop.Admin.Pages.QLDonHang
+namespace ShopAround.Admin.Pages.QLDonHang
 {
     public partial class Default : System.Web.UI.Page
     {
